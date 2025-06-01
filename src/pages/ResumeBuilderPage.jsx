@@ -6,9 +6,43 @@ import Projects from "../components/Projects";
 import Skills from "../components/Skills";
 import { Link } from "react-router-dom";
 import { FileText } from "lucide-react";
+import { samplePersonalInfo, sampleExperience } from "../components/data";
+import { v4 as uuid } from "uuid";
 
 export default function ResumeBuilderPage() {
-  const [personalInfo, setPersonalInfo] = useState({});
+  const [personalInfo, setPersonalInfo] = useState(samplePersonalInfo);
+  const [experience, setExperience] = useState(sampleExperience);
+
+  const handlePersonalInfoChange = (e) => {
+    const { name, value } = e.target;
+    setPersonalInfo((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleExperienceChange = (e, id) => {
+    const { name, value } = e.target;
+
+    setExperience((prev) =>
+      prev.map((item) => (item.id === id ? { ...item, [name]: value } : item))
+    );
+  };
+
+  const handleAddExperience = () => {
+    const newExperience = [...experience];
+    newExperience.push({
+      id: uuid(),
+      employer: "",
+      position: "",
+      startDate: "",
+      endDate: "",
+      description: "",
+    });
+    setExperience(newExperience);
+  };
+
+  const handleDeleteExperience = (experienceId) => {
+    const newExperience = experience.filter((item) => item.id !== experienceId);
+    setExperience(newExperience);
+  };
 
   return (
     <div className="bg-slate-200 min-h-screen p-10">
@@ -21,9 +55,17 @@ export default function ResumeBuilderPage() {
         </Link>{" "}
         <div className="flex justify-between gap-56">
           <div className="flex-shrink-0 ml-auto">
-            <div className="w-[600px]">
-              <PersonalInformation setPersonalInfo={setPersonalInfo} />
-              <Experience />
+            <div className="flex flex-col gap-6 w-[600px]">
+              <PersonalInformation
+                personalInfo={personalInfo}
+                handlePersonalInfo={handlePersonalInfoChange}
+              />
+              <Experience
+                experience={experience}
+                handleExperience={handleExperienceChange}
+                handleAddExperience={handleAddExperience}
+                handleDeleteExperience={handleDeleteExperience}
+              />
               <Education />
               <Projects />
               <Skills />
@@ -35,6 +77,18 @@ export default function ResumeBuilderPage() {
             {personalInfo && (
               <div>
                 <h1>{personalInfo.name}</h1>
+                <h1>{personalInfo.email}</h1>
+                <h1>{personalInfo.phone}</h1>
+
+                {experience.map((expItem) => (
+                  <div key={expItem.id}>
+                    <h1>{expItem.employer}</h1>
+                    <h1>{expItem.position}</h1>
+                    <h1>{expItem.startDate}</h1>
+                    <h1>{expItem.endDate}</h1>
+                    <h1>{expItem.description}</h1>
+                  </div>
+                ))}
               </div>
             )}
           </div>
