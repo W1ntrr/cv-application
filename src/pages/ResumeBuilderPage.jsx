@@ -8,99 +8,35 @@ import { Link } from "react-router-dom";
 import { FileText } from "lucide-react";
 import {
   samplePersonalInfo,
-  sampleExperience,
-  sampleEducation,
-  sampleProjects,
+  generateExperience,
+  generateEducation,
+  generateProjects,
 } from "../components/data";
-import { v4 as uuid } from "uuid";
 
 export default function ResumeBuilderPage() {
   const [personalInfo, setPersonalInfo] = useState(samplePersonalInfo);
-  const [experience, setExperience] = useState(sampleExperience);
-  const [education, setEducation] = useState(sampleEducation);
-  const [projects, setProjects] = useState(sampleProjects);
+  const [experience, setExperience] = useState([generateExperience()]);
+  const [education, setEducation] = useState([generateEducation()]);
+  const [projects, setProjects] = useState([generateProjects()]);
 
   const handlePersonalInfoChange = (e) => {
     const { name, value } = e.target;
     setPersonalInfo((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleExperienceChange = (e, id) => {
+  const handleSectionChange = (setState) => (e, id) => {
     const { name, value } = e.target;
-
-    setExperience((prev) =>
+    setState((prev) =>
       prev.map((item) => (item.id === id ? { ...item, [name]: value } : item))
     );
   };
 
-  const handleAddExperience = () => {
-    const newExperience = [...experience];
-    newExperience.push({
-      id: uuid(),
-      employer: "",
-      position: "",
-      startDate: "",
-      endDate: "",
-      description: "",
-    });
-    setExperience(newExperience);
+  const handleAddSection = (setState, newItem) => () => {
+    setState((prev) => [...prev, newItem()]);
   };
 
-  const handleDeleteExperience = (experienceId) => {
-    const newExperience = experience.filter((item) => item.id !== experienceId);
-    setExperience(newExperience);
-  };
-
-  const handleEducationChange = (e, id) => {
-    const { name, value } = e.target;
-
-    setEducation((prev) =>
-      prev.map((item) => (item.id === id ? { ...item, [name]: value } : item))
-    );
-  };
-
-  const handleAddEducation = () => {
-    const newEducation = [...education];
-    newEducation.push({
-      id: uuid(),
-      school: "",
-      degree: "",
-      city: "",
-      state: "",
-      startDate: "",
-      endDate: "",
-      description: "",
-    });
-    setEducation(newEducation);
-  };
-
-  const handleDeleteEducation = (educationId) => {
-    const newEducation = education.filter((item) => item.id !== educationId);
-    setEducation(newEducation);
-  };
-
-  const handleProjectsChange = (e, id) => {
-    const { name, value } = e.target;
-
-    setProjects((prev) =>
-      prev.map((item) => (item.id === id ? { ...item, [name]: value } : item))
-    );
-  };
-
-  const handleAddProjects = () => {
-    const newProjects = [...projects];
-    newProjects.push({
-      id: uuid(),
-      title: "",
-      subtitle: "",
-      description: "",
-    });
-    setProjects(projects);
-  };
-
-  const handleDeleteProjects = (projectsId) => {
-    const newProjects = projects.filter((item) => item.id !== projectsId);
-    setProjects(newProjects);
+  const handleDeleteSection = (setState) => (id) => {
+    setState((prev) => prev.filter((item) => item.id !== id));
   };
 
   return (
@@ -121,21 +57,30 @@ export default function ResumeBuilderPage() {
               />
               <Experience
                 experience={experience}
-                handleExperience={handleExperienceChange}
-                handleAddExperience={handleAddExperience}
-                handleDeleteExperience={handleDeleteExperience}
+                handleExperience={handleSectionChange(setExperience)}
+                handleAddExperience={handleAddSection(
+                  setExperience,
+                  generateExperience
+                )}
+                handleDeleteExperience={handleDeleteSection(setExperience)}
               />
               <Education
                 education={education}
-                handleEducation={handleEducationChange}
-                handleAddEducation={handleAddEducation}
-                handleDeleteEducation={handleDeleteEducation}
+                handleEducation={handleSectionChange(setEducation)}
+                handleAddEducation={handleAddSection(
+                  setEducation,
+                  generateEducation
+                )}
+                handleDeleteEducation={handleDeleteSection(setEducation)}
               />
               <Projects
                 projects={projects}
-                handleProjects={handleProjectsChange}
-                handleAddProjects={handleAddProjects}
-                handleDeleteProjects={handleDeleteProjects}
+                handleProjects={handleSectionChange(setProjects)}
+                handleAddProjects={handleAddSection(
+                  setProjects,
+                  generateProjects
+                )}
+                handleDeleteProjects={handleDeleteSection(setProjects)}
               />
               <Skills />
             </div>

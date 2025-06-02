@@ -7,51 +7,43 @@ const samplePersonalInfo = {
   location: "",
 };
 
-const sampleExperience = [
-  {
-    id: uuid(),
-    employer: "",
-    position: "",
-    startDate: "",
-    endDate: "",
-    description: "",
-  },
-];
+const generateExperience = () => ({
+  id: uuid(),
+  employer: "",
+  position: "",
+  startDate: "",
+  endDate: "",
+  description: "",
+});
 
-const sampleEducation = [
-  {
-    id: uuid(),
-    school: "",
-    degree: "",
-    city: "",
-    state: "",
-    startDate: "",
-    endDate: "",
-    description: "",
-  },
-];
+const generateEducation = () => ({
+  id: uuid(),
+  school: "",
+  degree: "",
+  city: "",
+  state: "",
+  startDate: "",
+  endDate: "",
+  description: "",
+});
 
-const sampleProjects = [
-  {
-    id: uuid(),
-    title: "",
-    subtitle: "",
-    description: "",
-  },
-];
+const generateProjects = () => ({
+  id: uuid(),
+  title: "",
+  subtitle: "",
+  description: "",
+});
 
-const sampleSkills = [
-  {
-    id: uuid(),
-    category: "",
-    list: [""],
-  },
-];
+const generateSkills = () => ({
+  id: uuid(),
+  category: "",
+  list: [""],
+});
 
 export {
   samplePersonalInfo,
-  sampleExperience,
-  sampleEducation,
-  sampleProjects,
-  sampleSkills,
+  generateExperience,
+  generateEducation,
+  generateProjects,
+  generateSkills,
 };
