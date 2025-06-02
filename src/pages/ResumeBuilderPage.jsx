@@ -6,12 +6,17 @@ import Projects from "../components/Projects";
 import Skills from "../components/Skills";
 import { Link } from "react-router-dom";
 import { FileText } from "lucide-react";
-import { samplePersonalInfo, sampleExperience } from "../components/data";
+import {
+  samplePersonalInfo,
+  sampleExperience,
+  sampleEducation,
+} from "../components/data";
 import { v4 as uuid } from "uuid";
 
 export default function ResumeBuilderPage() {
   const [personalInfo, setPersonalInfo] = useState(samplePersonalInfo);
   const [experience, setExperience] = useState(sampleExperience);
+  const [education, setEducation] = useState(sampleEducation);
 
   const handlePersonalInfoChange = (e) => {
     const { name, value } = e.target;
@@ -44,6 +49,34 @@ export default function ResumeBuilderPage() {
     setExperience(newExperience);
   };
 
+  const handleEducationChange = (e, id) => {
+    const { name, value } = e.target;
+
+    setEducation((prev) =>
+      prev.map((item) => (item.id === id ? { ...item, [name]: value } : item))
+    );
+  };
+
+  const handleAddEducation = () => {
+    const newEducation = [...education];
+    newEducation.push({
+      id: uuid(),
+      school: "",
+      degree: "",
+      city: "",
+      state: "",
+      startDate: "",
+      endDate: "",
+      description: "",
+    });
+    setEducation(newEducation);
+  };
+
+  const handleDeleteEducation = (educationId) => {
+    const newEducation = education.filter((item) => item.id !== educationId);
+    setEducation(newEducation);
+  };
+
   return (
     <div className="bg-slate-200 min-h-screen p-10">
       <div className="flex justify-between">
@@ -54,7 +87,7 @@ export default function ResumeBuilderPage() {
           </div>
         </Link>{" "}
         <div className="flex justify-between gap-56">
-          <div className="flex-shrink-0 ml-auto">
+          <div className="flex-shrink-0 ml-auto h-[90vh] scroll-smooth overflow-auto no-scrollbar">
             <div className="flex flex-col gap-6 w-[600px]">
               <PersonalInformation
                 personalInfo={personalInfo}
@@ -66,7 +99,12 @@ export default function ResumeBuilderPage() {
                 handleAddExperience={handleAddExperience}
                 handleDeleteExperience={handleDeleteExperience}
               />
-              <Education />
+              <Education
+                education={education}
+                handleEducation={handleEducationChange}
+                handleAddEducation={handleAddEducation}
+                handleDeleteEducation={handleDeleteEducation}
+              />
               <Projects />
               <Skills />
             </div>

@@ -18,4 +18,17 @@ const sampleExperience = [
   },
 ];
 
-export { samplePersonalInfo, sampleExperience };
+const sampleEducation = [
+  {
+    id: uuid(),
+    school: "",
+    degree: "",
+    city: "",
+    state: "",
+    startDate: "",
+    endDate: "",
+    description: "",
+  },
+];
+
+export { samplePersonalInfo, sampleExperience, sampleEducation };

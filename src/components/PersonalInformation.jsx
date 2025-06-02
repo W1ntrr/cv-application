@@ -1,5 +1,6 @@
 import { ChevronDown, Save } from "lucide-react";
 import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 
 export default function PersonalInformation({
   personalInfo,
@@ -28,78 +29,87 @@ export default function PersonalInformation({
           />
         </div>
 
-        {isOpen && (
-          <>
-            <div>
-              <label htmlFor="name" className="font-bold">
-                Full Name
-              </label>
-              <input
-                type="text"
-                name="name"
-                id="name"
-                value={personalInfo.name}
-                onChange={handlePersonalInfo}
-                placeholder="Enter your first and last name"
-                className="w-full focus:outline-none h-10 bg-slate-100 rounded px-4 py-2"
-                required
-              />
-            </div>
-
-            <div className="grid grid-cols-2">
-              {/*Email */}
+        <AnimatePresence initial={false}>
+          {isOpen && (
+            <motion.div
+              key="content"
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.4, ease: "easeInOut" }}
+              className="overflow-hidden"
+            >
               <div>
-                <label htmlFor="email" className="font-bold">
-                  Email
+                <label htmlFor="name" className="font-bold">
+                  Full Name
                 </label>
                 <input
-                  type="email"
-                  name="email"
-                  id="email"
-                  value={personalInfo.email}
+                  type="text"
+                  name="name"
+                  id="name"
+                  value={personalInfo.name}
                   onChange={handlePersonalInfo}
-                  placeholder="Enter email"
+                  placeholder="Enter your first and last name"
                   className="w-full focus:outline-none h-10 bg-slate-100 rounded px-4 py-2"
                   required
                 />
               </div>
 
-              {/* Phone */}
+              <div className="grid grid-cols-2">
+                {/*Email */}
+                <div>
+                  <label htmlFor="email" className="font-bold">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    value={personalInfo.email}
+                    onChange={handlePersonalInfo}
+                    placeholder="Enter email"
+                    className="w-full focus:outline-none h-10 bg-slate-100 rounded px-4 py-2"
+                    required
+                  />
+                </div>
+
+                {/* Phone */}
+                <div>
+                  <label htmlFor="phone" className="font-bold">
+                    Phone
+                  </label>
+                  <input
+                    type="tel"
+                    name="phone"
+                    id="phone"
+                    value={personalInfo.phone}
+                    onChange={handlePersonalInfo}
+                    placeholder="Enter phone"
+                    className="w-full focus:outline-none h-10 bg-slate-100 rounded px-4 py-2"
+                    required
+                  />
+                </div>
+              </div>
+
+              {/* Location */}
               <div>
-                <label htmlFor="phone" className="font-bold">
-                  Phone
+                <label htmlFor="location" className="font-bold">
+                  Location
                 </label>
                 <input
-                  type="tel"
-                  name="phone"
-                  id="phone"
-                  value={personalInfo.phone}
+                  type="text"
+                  name="location"
+                  id="location"
+                  value={personalInfo.location}
                   onChange={handlePersonalInfo}
-                  placeholder="Enter phone"
+                  placeholder="City, County"
                   className="w-full focus:outline-none h-10 bg-slate-100 rounded px-4 py-2"
                   required
                 />
               </div>
-            </div>
-
-            {/* Location */}
-            <div>
-              <label htmlFor="location" className="font-bold">
-                Location
-              </label>
-              <input
-                type="text"
-                name="location"
-                id="location"
-                value={personalInfo.location}
-                onChange={handlePersonalInfo}
-                placeholder="City, County"
-                className="w-full focus:outline-none h-10 bg-slate-100 rounded px-4 py-2"
-                required
-              />
-            </div>
-          </>
-        )}
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </form>
   );
