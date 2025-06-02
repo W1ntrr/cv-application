@@ -14,11 +14,6 @@ export default function Education({
     setIsOpen((prev) => !prev);
   };
 
-  console.log(
-    "Education ID:",
-    education.map((item) => item.id)
-  );
-
   return (
     <form className="font-poppins">
       <div className="rounded-xl shadow p-8 bg-white w-full max-w-xl  text-indigo-950 flex flex-col gap-6">
@@ -26,7 +21,7 @@ export default function Education({
           className=" flex justify-between hover:opacity-70 cursor-pointer"
           onClick={handleToggleSection}
         >
-          <h3 className="text-2xl font-semibold select-none">Experience</h3>
+          <h3 className="text-2xl font-semibold select-none">Education</h3>
           <ChevronDown
             className={`${
               isOpen ? "rotate-180" : ""
@@ -49,6 +44,7 @@ export default function Education({
                   key={eduItem.id}
                   className="space-y-4 border-b border-dotted border-b-slate-400"
                 >
+                  {/* School */}
                   <div>
                     <label
                       htmlFor={`school-${eduItem.id}`}
@@ -89,6 +85,7 @@ export default function Education({
                   </div>
 
                   <div className="grid grid-cols-2">
+                    {/* City */}
                     <div>
                       <label
                         htmlFor={`city-${eduItem.id}`}
@@ -109,6 +106,8 @@ export default function Education({
                         className="w-full focus:outline-none h-10 bg-slate-100 rounded px-4 py-2"
                       />
                     </div>
+
+                    {/* State */}
                     <div>
                       <label
                         htmlFor={`state-${eduItem.id}`}
@@ -173,6 +172,7 @@ export default function Education({
                     </div>
                   </div>
                   <div>
+                    {/* Description */}
                     <label
                       htmlFor={`description-${eduItem.id}`}
                       className="font-bold"
@@ -184,9 +184,10 @@ export default function Education({
                       id={`description-${eduItem.id}`}
                       value={eduItem.description}
                       onChange={(e) => handleEducation(e, eduItem.id)}
-                      placeholder="Describe your responsibilities or achievements"
+                      placeholder="Add a description of your education"
                       className="w-full focus:outline-none h-24 bg-slate-100 px-4 py-2 resize-none"
                     />
+
                     <div className="flex justify-end p-1 ">
                       <button
                         type="button"

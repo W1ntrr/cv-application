@@ -31,4 +31,27 @@ const sampleEducation = [
   },
 ];
 
-export { samplePersonalInfo, sampleExperience, sampleEducation };
+const sampleProjects = [
+  {
+    id: uuid(),
+    title: "",
+    subtitle: "",
+    description: "",
+  },
+];
+
+const sampleSkills = [
+  {
+    id: uuid(),
+    category: "",
+    list: [""],
+  },
+];
+
+export {
+  samplePersonalInfo,
+  sampleExperience,
+  sampleEducation,
+  sampleProjects,
+  sampleSkills,
+};
