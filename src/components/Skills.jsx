@@ -7,10 +7,11 @@ export default function Projects({
   handleSkills,
   handleAddSkills,
   handleDeleteSkills,
+  handleDeleteCategory,
   handleAddCategory,
 }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [isEditing, setIsEditing] = useState(false);
+  const [editingCategoryId, setEditingCategoryId] = useState(null);
   const [skillInputs, setSkillInputs] = useState({});
 
   const handleToggleSection = () => {
@@ -56,8 +57,8 @@ export default function Projects({
                     </label>
                     <input
                       type="text"
-                      name="school"
-                      id={`school-${item.id}`}
+                      name="category"
+                      id={`category-${item.id}`}
                       value={item.category}
                       onChange={(e) => handleSkills(e, item.id)}
                       placeholder="Enter a category"
@@ -69,13 +70,18 @@ export default function Projects({
                     {item.list.map((skill) => (
                       <div
                         key={skill.id}
-                        className="py-2 px-3 bg-indigo-100 rounded-xl h-10"
+                        className="py-2 px-3 bg-indigo-100 rounded-xl h-10 flex gap-3 items-center"
                       >
                         {skill.name}
+                        <X
+                          size={18}
+                          className="cursor-pointer hover:text-red-500"
+                          onClick={() => handleDeleteSkills(item.id, skill.id)}
+                        />
                       </div>
                     ))}
 
-                    {isEditing ? (
+                    {editingCategoryId === item.id ? (
                       <div className="relative inline-block">
                         <input
                           type="text"
@@ -98,7 +104,7 @@ export default function Projects({
                                   ...prev,
                                   [item.id]: "",
                                 }));
-                                setIsEditing(false);
+                                setEditingCategoryId(null);
                               }
                             }
                           }}
@@ -109,14 +115,14 @@ export default function Projects({
                         <X
                           className="absolute right-4 top-[0.7rem] cursor-pointer hover:text-red-500 "
                           size={20}
-                          onClick={() => setIsEditing(false)}
+                          onClick={() => setEditingCategoryId(null)}
                           strokeWidth={2}
                         />
                       </div>
                     ) : (
                       <button
                         type="button"
-                        onClick={() => setIsEditing(true)}
+                        onClick={() => setEditingCategoryId(item.id)}
                         className="py-2 px-3 bg-indigo-100 rounded-full font-bold flex gap-1 cursor-pointer text-sm hover:bg-indigo-200 transition-all duration-300  active:translate-y-1 "
                         required
                       >
@@ -133,7 +139,7 @@ export default function Projects({
                   <div className="flex justify-end p-1 ">
                     <button
                       type="button"
-                      onClick={() => handleDeleteSkills(item.id)}
+                      onClick={() => handleDeleteCategory(item.id)}
                       className="flex items-center gap-3 hover:text-red-500 hover:bg-red-200 py-1 px-3 rounded-lg cursor-pointer font-semibold"
                     >
                       <Trash size={20} />

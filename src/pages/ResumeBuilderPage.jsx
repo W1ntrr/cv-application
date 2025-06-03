@@ -42,12 +42,6 @@ export default function ResumeBuilderPage() {
     setState((prev) => prev.filter((item) => item.id !== id));
   };
 
-  const handleSkills = (id, value) => {
-    setSkills((prev) =>
-      prev.map((item) => (item.id === id ? { ...item, list: [value] } : item))
-    );
-  };
-
   const handleAddSkills = (categoryId, skill) => {
     if (!skill.trim()) return;
 
@@ -57,6 +51,19 @@ export default function ResumeBuilderPage() {
           ? {
               ...cat,
               list: [...cat.list, { id: uuid(), name: skill }],
+            }
+          : cat
+      )
+    );
+  };
+
+  const handleDeleteSkills = (categoryId, skillId) => {
+    setSkills((prev) =>
+      prev.map((cat) =>
+        cat.id === categoryId
+          ? {
+              ...cat,
+              list: cat.list.filter((skill) => skill.id !== skillId),
             }
           : cat
       )
@@ -108,9 +115,10 @@ export default function ResumeBuilderPage() {
               />
               <Skills
                 skills={skills}
-                handleSkills={handleSkills}
+                handleSkills={handleSectionChange(setSkills)}
                 handleAddSkills={handleAddSkills}
-                handleDeleteSkills={handleDeleteSection(setSkills)}
+                handleDeleteSkills={handleDeleteSkills}
+                handleDeleteCategory={handleDeleteSection(setSkills)}
                 handleAddCategory={handleAddSection(setSkills, generateSkills)}
               />
             </div>
@@ -152,6 +160,8 @@ export default function ResumeBuilderPage() {
 
                 {skills.map((item) => (
                   <div key={item.id}>
+                    <h1 className="font-bold text-2xl">Skills</h1>
+                    <h1>{item.category}</h1>
                     {item.list.map((skill) => (
                       <li key={skill.id}>{skill.name}</li>
                     ))}
