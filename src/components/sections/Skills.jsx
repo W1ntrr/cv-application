@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import { ChevronDown, Plus, Trash, X } from "lucide-react";
+import TextField from "../ui/TextField";
 
 export default function Projects({
   skills,
@@ -48,24 +49,15 @@ export default function Projects({
                   key={item.id}
                   className="space-y-4 border-b border-dotted border-b-slate-400 mb-4"
                 >
-                  <div>
-                    <label
-                      htmlFor={`category-${item.id}`}
-                      className="font-bold"
-                    >
-                      Category Name
-                    </label>
-                    <input
-                      type="text"
-                      name="category"
-                      id={`category-${item.id}`}
-                      value={item.category}
-                      onChange={(e) => handleSkills(e, item.id)}
-                      placeholder="Enter a category"
-                      className="w-full focus:outline-none h-10 bg-slate-100 rounded px-4 py-2"
-                      required
-                    />
-                  </div>
+                  <TextField
+                    label="Category Name"
+                    type="text"
+                    id={item.id}
+                    name="category"
+                    value={item.category}
+                    placeholder="Enter a category"
+                    onChangeField={handleSkills}
+                  />
                   <div className="flex items-center gap-4">
                     {item.list.map((skill) => (
                       <div

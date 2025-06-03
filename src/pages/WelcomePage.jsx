@@ -12,7 +12,7 @@ export default function WelcomePage() {
             Prime<span className="text-indigo-950 font-semibold">CV</span>
           </div>
         </Link>
-        <Link to="/resumeBuilder">
+        <Link to="/resume">
           <button className=" p-3 bg-indigo-950 rounded-lg font-semibold text-white cursor-pointer hover:bg-indigo-800 transition-all duration-300 shadow-md hover:shadow-lg">
             Start Building Now →
           </button>
@@ -31,7 +31,7 @@ export default function WelcomePage() {
             </p>
             <button className="bg-indigo-950 text-xl text-white font-bold p-4 rounded-lg cursor-pointer shadow-md hover:scale-105 hover:bg-indigo-800 hover:shadow-lg transition-all duration-300 flex items-center w-full md:w-auto">
               <ArrowUpRight className="inline-block w-10 h-10" />
-              <Link to="/resumeBuilder" className="mx-2">
+              <Link to="/resume" className="mx-2">
                 Build Your Resume
               </Link>
             </button>

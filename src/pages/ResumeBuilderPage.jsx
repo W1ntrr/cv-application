@@ -1,9 +1,9 @@
 import { useState } from "react";
-import PersonalInformation from "../components/PersonalInformation";
-import Experience from "../components/Experience";
-import Education from "../components/Education";
-import Projects from "../components/Projects";
-import Skills from "../components/Skills";
+import PersonalInformation from "../components/sections/PersonalInformation";
+import Experience from "../components/sections/Experience";
+import Education from "../components/sections/Education";
+import Projects from "../components/sections/Projects";
+import Skills from "../components/sections/Skills";
 import { Link } from "react-router-dom";
 import { FileText } from "lucide-react";
 import {

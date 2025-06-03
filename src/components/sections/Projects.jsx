@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import { ChevronDown, Plus, Trash } from "lucide-react";
+import TextField from "../ui/TextField";
 
 export default function Projects({
   projects,
@@ -45,44 +46,26 @@ export default function Projects({
                   className="space-y-4 border-b border-dotted border-b-slate-400 mb-4"
                 >
                   {/* Project Title */}
-                  <div>
-                    <label
-                      htmlFor={`project-${projItem.id}`}
-                      className="font-bold"
-                    >
-                      Project title
-                    </label>
-                    <input
-                      type="text"
-                      name="title"
-                      id={`title-${projItem.id}`}
-                      value={projItem.title}
-                      onChange={(e) => handleProjects(e, projItem.id)}
-                      placeholder="Enter Project title"
-                      className="w-full focus:outline-none h-10 bg-slate-100 rounded px-4 py-2"
-                      required
-                    />
-                  </div>
+                  <TextField
+                    label="Project Title"
+                    type="text"
+                    id={projItem.id}
+                    name="title"
+                    value={projItem.title}
+                    placeholder="Enter title"
+                    onChangeField={handleProjects}
+                  />
 
                   {/* Sub Title */}
-                  <div>
-                    <label
-                      htmlFor={`subTitle-${projItem.id}`}
-                      className="font-bold"
-                    >
-                      Sub Title
-                    </label>
-                    <input
-                      type="text"
-                      name="subtitle"
-                      id={`subtitle-${projItem.id}`}
-                      value={projItem.subtitle}
-                      onChange={(e) => handleProjects(e, projItem.id)}
-                      placeholder="Enter sub title"
-                      className="w-full focus:outline-none h-10 bg-slate-100 rounded px-4 py-2"
-                      required
-                    />
-                  </div>
+                  <TextField
+                    label="Sub Title"
+                    type="text"
+                    id={projItem.id}
+                    name="subtitle"
+                    value={projItem.subtitle}
+                    placeholder="Enter sub title"
+                    onChangeField={handleProjects}
+                  />
 
                   {/* Description */}
                   <div>

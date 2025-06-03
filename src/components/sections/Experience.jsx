@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import { ChevronDown, Plus, Trash } from "lucide-react";
+import TextField from "../ui/TextField";
 
 export default function Experience({
   experience,
@@ -44,85 +45,50 @@ export default function Experience({
                   key={expItem.id}
                   className="space-y-4 border-b border-dotted border-b-slate-400 mb-4"
                 >
-                  <div>
-                    <label
-                      htmlFor={`employer-${expItem.id}`}
-                      className="font-bold"
-                    >
-                      Employer
-                    </label>
-                    <input
-                      type="text"
-                      name="employer"
-                      id={`employer-${expItem.id}`}
-                      value={expItem.employer}
-                      onChange={(e) => handleExperience(e, expItem.id)}
-                      placeholder="Enter employer"
-                      className="w-full focus:outline-none h-10 bg-slate-100 rounded px-4 py-2"
-                      required
-                    />
-                  </div>
+                  {/* Employer */}
+                  <TextField
+                    label="Employer"
+                    type="text"
+                    name="employer"
+                    id={expItem.id}
+                    value={expItem.employer}
+                    placeholder="Enter employer "
+                    onChangeField={handleExperience}
+                  />
 
                   {/* Position */}
-                  <div>
-                    <label
-                      htmlFor={`position-${expItem.id}`}
-                      className="font-bold"
-                    >
-                      Position
-                    </label>
-                    <input
-                      type="text"
-                      name="position"
-                      id={`position-${expItem.id}`}
-                      value={expItem.position}
-                      onChange={(e) => handleExperience(e, expItem.id)}
-                      placeholder="Enter position"
-                      className="w-full focus:outline-none h-10 bg-slate-100 rounded px-4 py-2"
-                      required
-                    />
-                  </div>
+                  <TextField
+                    label="Position"
+                    type="text"
+                    name="position"
+                    id={expItem.id}
+                    value={expItem.position}
+                    placeholder="Enter your position"
+                    onChangeField={handleExperience}
+                  />
 
                   <div className="grid grid-cols-2">
                     {/* Start Date */}
-                    <div>
-                      <label
-                        htmlFor={`startDate-${expItem.id}`}
-                        className="font-bold"
-                      >
-                        Start Date
-                      </label>
-                      <input
-                        type="text"
-                        name="startDate"
-                        id={`startDate-${expItem.id}`}
-                        value={expItem.startDate}
-                        onChange={(e) => handleExperience(e, expItem.id)}
-                        placeholder="e.g. Jan 2025 or Present"
-                        className="w-full focus:outline-none h-10 bg-slate-100 rounded px-4 py-2"
-                        required
-                      />
-                    </div>
+                    <TextField
+                      label="Start Date"
+                      type="text"
+                      name="startDate"
+                      id={expItem.id}
+                      value={expItem.startDate}
+                      placeholder="e.g. Jan 2025 or Present"
+                      onChangeField={handleExperience}
+                    />
 
                     {/* End Date */}
-                    <div>
-                      <label
-                        htmlFor={`endDate-${expItem.id}`}
-                        className="font-bold"
-                      >
-                        End Date
-                      </label>
-                      <input
-                        type="text"
-                        name="endDate"
-                        id={`endDate-${expItem.id}`}
-                        value={expItem.endDate}
-                        onChange={(e) => handleExperience(e, expItem.id)}
-                        placeholder="e.g. Jan 2025 or Present"
-                        className="w-full focus:outline-none h-10 bg-slate-100 rounded px-4 py-2"
-                        required
-                      />
-                    </div>
+                    <TextField
+                      label="End Date"
+                      type="text"
+                      name="endDate"
+                      id={expItem.id}
+                      value={expItem.endDate}
+                      placeholder="e.g. Jan 2025 or Present"
+                      onChangeField={handleExperience}
+                    />
                   </div>
                   <div>
                     <label
