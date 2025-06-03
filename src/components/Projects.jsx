@@ -42,7 +42,7 @@ export default function Projects({
               {projects.map((projItem) => (
                 <div
                   key={projItem.id}
-                  className="space-y-4 border-b border-dotted border-b-slate-400"
+                  className="space-y-4 border-b border-dotted border-b-slate-400 mb-4"
                 >
                   {/* Project Title */}
                   <div>

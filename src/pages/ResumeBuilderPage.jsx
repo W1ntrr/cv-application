@@ -11,13 +11,16 @@ import {
   generateExperience,
   generateEducation,
   generateProjects,
+  generateSkills,
 } from "../components/data";
+import { v4 as uuid } from "uuid";
 
 export default function ResumeBuilderPage() {
   const [personalInfo, setPersonalInfo] = useState(samplePersonalInfo);
   const [experience, setExperience] = useState([generateExperience()]);
   const [education, setEducation] = useState([generateEducation()]);
   const [projects, setProjects] = useState([generateProjects()]);
+  const [skills, setSkills] = useState([generateSkills()]);
 
   const handlePersonalInfoChange = (e) => {
     const { name, value } = e.target;
@@ -37,6 +40,27 @@ export default function ResumeBuilderPage() {
 
   const handleDeleteSection = (setState) => (id) => {
     setState((prev) => prev.filter((item) => item.id !== id));
+  };
+
+  const handleSkills = (id, value) => {
+    setSkills((prev) =>
+      prev.map((item) => (item.id === id ? { ...item, list: [value] } : item))
+    );
+  };
+
+  const handleAddSkills = (categoryId, skill) => {
+    if (!skill.trim()) return;
+
+    setSkills((prev) =>
+      prev.map((cat) =>
+        cat.id === categoryId
+          ? {
+              ...cat,
+              list: [...cat.list, { id: uuid(), name: skill }],
+            }
+          : cat
+      )
+    );
   };
 
   return (
@@ -82,7 +106,13 @@ export default function ResumeBuilderPage() {
                 )}
                 handleDeleteProjects={handleDeleteSection(setProjects)}
               />
-              <Skills />
+              <Skills
+                skills={skills}
+                handleSkills={handleSkills}
+                handleAddSkills={handleAddSkills}
+                handleDeleteSkills={handleDeleteSection(setSkills)}
+                handleAddCategory={handleAddSection(setSkills, generateSkills)}
+              />
             </div>
           </div>
         </div>
@@ -117,6 +147,14 @@ export default function ResumeBuilderPage() {
                     <h1 className="font-bold text-2xl">Projects</h1>
                     <h1>{projItem.title}</h1>
                     <h1>{projItem.subtitle}</h1>
+                  </div>
+                ))}
+
+                {skills.map((item) => (
+                  <div key={item.id}>
+                    {item.list.map((skill) => (
+                      <li key={skill.id}>{skill.name}</li>
+                    ))}
                   </div>
                 ))}
               </div>

@@ -42,7 +42,7 @@ export default function Education({
               {education.map((eduItem) => (
                 <div
                   key={eduItem.id}
-                  className="space-y-4 border-b border-dotted border-b-slate-400"
+                  className="space-y-4 border-b border-dotted border-b-slate-400 mb-4"
                 >
                   {/* School */}
                   <div>

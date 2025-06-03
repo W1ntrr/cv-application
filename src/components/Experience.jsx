@@ -42,7 +42,7 @@ export default function Experience({
               {experience.map((expItem) => (
                 <div
                   key={expItem.id}
-                  className="space-y-4 border-b border-dotted border-b-slate-400"
+                  className="space-y-4 border-b border-dotted border-b-slate-400 mb-4"
                 >
                   <div>
                     <label

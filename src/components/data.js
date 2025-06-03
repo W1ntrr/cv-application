@@ -37,7 +37,7 @@ const generateProjects = () => ({
 const generateSkills = () => ({
   id: uuid(),
   category: "",
-  list: [""],
+  list: [],
 });
 
 export {
