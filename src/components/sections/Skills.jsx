@@ -58,7 +58,7 @@ export default function Projects({
                     placeholder="Enter a category"
                     onChangeField={handleSkills}
                   />
-                  <div className="flex items-center gap-4">
+                  <div className="flex flex-wrap items-center gap-4">
                     {item.list.map((skill) => (
                       <div
                         key={skill.id}

@@ -238,7 +238,7 @@ export default function ResumeBuilderPage() {
                 <div className="border-t-2 mb-2"></div>
                 {skills.map((skill) => (
                   <div key={skill.id}>
-                    <div className="flex items-center gap-2">
+                    <div className="flex flex-wrap items-center gap-2">
                       <p className="font-bold text-lg">{skill.category}:</p>
                       {skill.list.map((item, index) => (
                         <p key={item.id}>
