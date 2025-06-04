@@ -57,7 +57,14 @@ export default function Education({
                   />
                   {/* Degree */}
                   <TextField
-                    label="Degree"
+                    label={
+                      <>
+                        Degree
+                        <span className="mx-2 text-gray-400 text-sm">
+                          optional
+                        </span>
+                      </>
+                    }
                     type="text"
                     id={eduItem.id}
                     name="degree"
@@ -69,7 +76,7 @@ export default function Education({
                   <TextField
                     label="Location"
                     type="text"
-                    id="location"
+                    id={eduItem.id}
                     name="location"
                     value={eduItem.location}
                     placeholder="Enter Location"

@@ -187,6 +187,70 @@ export default function ResumeBuilderPage() {
                 ))}
               </div>
             )}
+
+            {hasContent(education) && (
+              <div className="mt-6">
+                <h1 className="font-bold text-xl">Education</h1>
+                <div className="border-t-2 mb-2">
+                  {education.map((eduItem) => (
+                    <div key={eduItem.id} className="mb-4">
+                      <div className="flex justify-between">
+                        <h2 className="font-semibold">{eduItem.school}</h2>
+                        <p>
+                          {eduItem.startDate}{" "}
+                          {eduItem.startDate && eduItem.endDate ? "-" : ""}{" "}
+                          {eduItem.endDate}
+                        </p>
+                      </div>
+                      <div className="flex justify-between">
+                        <div className="w-3/4">
+                          <p className="italic">{eduItem.degree}</p>
+                          <p>{eduItem.description}</p>
+                        </div>
+                        <div>{eduItem.location}</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {hasContent(projects) && (
+              <div>
+                <h1 className="font-bold text-xl">Projects</h1>
+                <div className="border-t-2 mb-2">
+                  {projects.map((projItem) => (
+                    <div key={projItem.id} className="mb-4">
+                      <div>
+                        <h2 className="font-semibold">{projItem.title}</h2>
+                        <p className="italic">{projItem.subtitle}</p>
+                        <p className="w-3/4">{projItem.description}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {hasContent(skills) && (
+              <div>
+                <h1 className="font-bold text-xl">Skills</h1>
+                <div className="border-t-2 mb-2"></div>
+                {skills.map((skill) => (
+                  <div key={skill.id}>
+                    <div className="flex items-center gap-2">
+                      <p className="font-bold text-lg">{skill.category}:</p>
+                      {skill.list.map((item, index) => (
+                        <p key={item.id}>
+                          {item.name}
+                          {index < skill.list.length - 1 ? ", " : ""}
+                        </p>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </div>
