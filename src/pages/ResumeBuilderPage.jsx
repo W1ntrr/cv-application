@@ -83,12 +83,12 @@ export default function ResumeBuilderPage() {
   };
 
   return (
-    <div className="bg-slate-200 min-h-screen p-10 font-serif">
+    <div className="bg-slate-200 min-h-screen p-10">
       <div className="flex justify-between">
         <Link to="/">
-          <div className="text-3xl font-bold text-indigo-800 flex items-center my-1">
+          <div className="text-3xl font-bold text-indigo-800 flex items-center">
             <FileText className="inline-block w-10 h-10 mx-1" />
-            Prime<span className="text-indigo-950 font-semibold">CV</span>
+            CV<span className="text-indigo-950 font-semibold">Builder</span>
           </div>
         </Link>{" "}
         <div className="flex justify-between gap-56">
@@ -136,7 +136,7 @@ export default function ResumeBuilderPage() {
             </div>
           </div>
         </div>
-        <div className=" max-h-[90vh] overflow-auto scroll-smooth no-scrollbar">
+        <div className=" max-h-[90vh] overflow-auto scroll-smooth no-scrollbar font-serif">
           <div className="bg-white w-[210mm] h-[297mm] mx-auto p-8 shadow-lg ">
             {personalInfo && (
               <div className="flex flex-col items-center gap-4">
@@ -167,7 +167,7 @@ export default function ResumeBuilderPage() {
             {hasContent(experience) && (
               <div className="mt-6">
                 <h1 className="font-bold text-xl">EXPERIENCE</h1>
-                <div className="border-t-2 mb-2"></div>
+                <div className="border-t-2 mb-3"></div>
                 {experience.map((item) => (
                   <div key={item.id} className="mb-4">
                     <div className="flex justify-between">
@@ -190,52 +190,48 @@ export default function ResumeBuilderPage() {
 
             {hasContent(education) && (
               <div className="mt-6">
-                <h1 className="font-bold text-xl">Education</h1>
-                <div className="border-t-2 mb-2">
-                  {education.map((eduItem) => (
-                    <div key={eduItem.id} className="mb-4">
-                      <div className="flex justify-between">
-                        <h2 className="font-semibold">{eduItem.school}</h2>
-                        <p>
-                          {eduItem.startDate}{" "}
-                          {eduItem.startDate && eduItem.endDate ? "-" : ""}{" "}
-                          {eduItem.endDate}
-                        </p>
-                      </div>
-                      <div className="flex justify-between">
-                        <div className="w-3/4">
-                          <p className="italic">{eduItem.degree}</p>
-                          <p>{eduItem.description}</p>
-                        </div>
-                        <div>{eduItem.location}</div>
-                      </div>
+                <h1 className="font-bold text-xl">EDUCATION</h1>
+                <div className="border-t-2 mb-3"></div>
+                {education.map((eduItem) => (
+                  <div key={eduItem.id} className="mb-4">
+                    <div className="flex justify-between">
+                      <h2 className="font-semibold">{eduItem.school}</h2>
+                      <p>
+                        {eduItem.startDate}{" "}
+                        {eduItem.startDate && eduItem.endDate ? "-" : ""}{" "}
+                        {eduItem.endDate}
+                      </p>
                     </div>
-                  ))}
-                </div>
+                    <div className="flex justify-between">
+                      <p className="italic">{eduItem.degree}</p>
+                      <div className="w-fit">{eduItem.location}</div>
+                    </div>
+                    <p className="w-3/4">{eduItem.description}</p>
+                  </div>
+                ))}
               </div>
             )}
 
             {hasContent(projects) && (
               <div>
-                <h1 className="font-bold text-xl">Projects</h1>
-                <div className="border-t-2 mb-2">
-                  {projects.map((projItem) => (
-                    <div key={projItem.id} className="mb-4">
-                      <div>
-                        <h2 className="font-semibold">{projItem.title}</h2>
-                        <p className="italic">{projItem.subtitle}</p>
-                        <p className="w-3/4">{projItem.description}</p>
-                      </div>
+                <h1 className="font-bold text-xl">PROJECTS</h1>
+                <div className="border-t-2 mb-3"> </div>
+                {projects.map((projItem) => (
+                  <div key={projItem.id} className="mb-4">
+                    <div>
+                      <h2 className="font-semibold">{projItem.title}</h2>
+                      <p className="italic">{projItem.subtitle}</p>
+                      <p className="w-3/4">{projItem.description}</p>
                     </div>
-                  ))}
-                </div>
+                  </div>
+                ))}
               </div>
             )}
 
             {hasContent(skills) && (
               <div>
-                <h1 className="font-bold text-xl">Skills</h1>
-                <div className="border-t-2 mb-2"></div>
+                <h1 className="font-bold text-xl">SKILLS</h1>
+                <div className="border-t-2 mb-3"></div>
                 {skills.map((skill) => (
                   <div key={skill.id}>
                     <div className="flex flex-wrap items-center gap-2">

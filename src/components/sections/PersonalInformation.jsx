@@ -7,7 +7,7 @@ export default function PersonalInformation({
   personalInfo,
   handlePersonalInfo,
 }) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
 
   const handleToggleSection = () => {
     setIsOpen((prev) => !prev);
@@ -37,7 +37,7 @@ export default function PersonalInformation({
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.4, ease: "easeInOut" }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
               className="overflow-hidden"
             >
               {/* Full Name */}

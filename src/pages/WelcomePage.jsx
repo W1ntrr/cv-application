@@ -9,13 +9,8 @@ export default function WelcomePage() {
         <Link to="/">
           <div className="text-3xl font-bold text-indigo-800 flex items-center ">
             <FileText className="inline-block w-10 h-10 mx-1" />
-            Prime<span className="text-indigo-950 font-semibold">CV</span>
+            CV<span className="text-indigo-950 font-semibold">Builder</span>
           </div>
-        </Link>
-        <Link to="/resume">
-          <button className=" p-3 bg-indigo-950 rounded-lg font-semibold text-white cursor-pointer hover:bg-indigo-800 transition-all duration-300 shadow-md hover:shadow-lg">
-            Start Building Now →
-          </button>
         </Link>
       </nav>
 
