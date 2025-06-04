@@ -45,6 +45,17 @@ export default function Experience({
                   key={expItem.id}
                   className="space-y-4 border-b border-dotted border-b-slate-400 mb-4"
                 >
+                  {/* Job Title */}
+                  <TextField
+                    label="Job Title"
+                    type="text"
+                    name="jobTitle"
+                    id={expItem.id}
+                    value={expItem.jobTitle}
+                    placeholder="Enter Job Title "
+                    onChangeField={handleExperience}
+                  />
+
                   {/* Employer */}
                   <TextField
                     label="Employer"
@@ -52,18 +63,24 @@ export default function Experience({
                     name="employer"
                     id={expItem.id}
                     value={expItem.employer}
-                    placeholder="Enter employer "
+                    placeholder="Enter Employer"
                     onChangeField={handleExperience}
                   />
 
-                  {/* Position */}
                   <TextField
-                    label="Position"
+                    label={
+                      <>
+                        Location
+                        <span className="mx-2 text-gray-400 text-sm">
+                          optional
+                        </span>
+                      </>
+                    }
                     type="text"
-                    name="position"
+                    name="location"
                     id={expItem.id}
-                    value={expItem.position}
-                    placeholder="Enter your position"
+                    value={expItem.location}
+                    placeholder="Enter Location"
                     onChangeField={handleExperience}
                   />
 
@@ -105,6 +122,7 @@ export default function Experience({
                       placeholder="Describe your responsibilities or achievements"
                       className="w-full focus:outline-none h-24 bg-slate-100 px-4 py-2 resize-none"
                     />
+
                     <div className="flex justify-end p-1 ">
                       <button
                         type="button"

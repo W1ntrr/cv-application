@@ -9,8 +9,9 @@ const samplePersonalInfo = {
 
 const generateExperience = () => ({
   id: uuid(),
+  jobTitle: "",
   employer: "",
-  position: "",
+  location: "",
   startDate: "",
   endDate: "",
   description: "",
@@ -20,8 +21,7 @@ const generateEducation = () => ({
   id: uuid(),
   school: "",
   degree: "",
-  city: "",
-  state: "",
+  location: "",
   startDate: "",
   endDate: "",
   description: "",

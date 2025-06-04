@@ -66,43 +66,15 @@ export default function Education({
                     onChangeField={handleEducation}
                   />
 
-                  <div className="grid grid-cols-2">
-                    {/* City */}
-                    <TextField
-                      label={
-                        <>
-                          City
-                          <span className="mx-2 text-gray-400 text-sm">
-                            optional
-                          </span>
-                        </>
-                      }
-                      type="text"
-                      id={eduItem.id}
-                      name="city"
-                      value={eduItem.city}
-                      placeholder="Enter city"
-                      onChangeField={handleEducation}
-                    />
-
-                    {/* State */}
-                    <TextField
-                      label={
-                        <>
-                          State
-                          <span className="mx-2 text-gray-400 text-sm">
-                            optional
-                          </span>
-                        </>
-                      }
-                      type="text"
-                      id={eduItem.id}
-                      name="state"
-                      value={eduItem.state}
-                      placeholder="Enter state"
-                      onChangeField={handleEducation}
-                    />
-                  </div>
+                  <TextField
+                    label="Location"
+                    type="text"
+                    id="location"
+                    name="location"
+                    value={eduItem.location}
+                    placeholder="Enter Location"
+                    onChangeField={handleEducation}
+                  />
 
                   <div className="grid grid-cols-2">
                     {/* Start Date */}

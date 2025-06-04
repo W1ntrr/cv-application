@@ -5,7 +5,7 @@ import Education from "../components/sections/Education";
 import Projects from "../components/sections/Projects";
 import Skills from "../components/sections/Skills";
 import { Link } from "react-router-dom";
-import { FileText } from "lucide-react";
+import { FileText, Mail, Phone, MapPin } from "lucide-react";
 import {
   samplePersonalInfo,
   generateExperience,
@@ -70,8 +70,20 @@ export default function ResumeBuilderPage() {
     );
   };
 
+  const hasContent = (data) => {
+    return (
+      Array.isArray(data) &&
+      data.some((item) =>
+        Object.entries(item).some(
+          ([key, value]) =>
+            key !== "id" && typeof value === "string" && value.trim() !== ""
+        )
+      )
+    );
+  };
+
   return (
-    <div className="bg-slate-200 min-h-screen p-10">
+    <div className="bg-slate-200 min-h-screen p-10 font-serif">
       <div className="flex justify-between">
         <Link to="/">
           <div className="text-3xl font-bold text-indigo-800 flex items-center my-1">
@@ -127,44 +139,50 @@ export default function ResumeBuilderPage() {
         <div className=" max-h-[90vh] overflow-auto scroll-smooth no-scrollbar">
           <div className="bg-white w-[210mm] h-[297mm] mx-auto p-8 shadow-lg ">
             {personalInfo && (
-              <div>
-                <h1 className="font-bold text-2xl">Personal Info</h1>
-                <h1>{personalInfo.name}</h1>
-                <h1>{personalInfo.email}</h1>
-                <h1>{personalInfo.phone}</h1>
+              <div className="flex flex-col items-center gap-4">
+                <h1 className="font-bold text-3xl">{personalInfo.name}</h1>
+                <div className="flex gap-4">
+                  {personalInfo.email && (
+                    <p className="flex gap-2 items-center">
+                      <Mail size={18} />
+                      {personalInfo.email}
+                    </p>
+                  )}
+                  {personalInfo.phone && (
+                    <p className="flex gap-2 items-center">
+                      <Phone size={18} />
+                      {personalInfo.phone}
+                    </p>
+                  )}
+                  {personalInfo.location && (
+                    <p className="flex gap-2 items-center">
+                      <MapPin size={18} />
+                      {personalInfo.location}
+                    </p>
+                  )}
+                </div>
+              </div>
+            )}
 
-                {experience.map((expItem) => (
-                  <div key={expItem.id}>
-                    <h1 className="font-bold text-2xl">Experience</h1>
-                    <h1>{expItem.employer}</h1>
-                    <h1>{expItem.position}</h1>
-                    <h1>{expItem.startDate}</h1>
-                    <h1>{expItem.endDate}</h1>
-                    <h1>{expItem.description}</h1>
-                  </div>
-                ))}
-                {education.map((eduItem) => (
-                  <div key={eduItem.id}>
-                    <h1 className="font-bold text-2xl">Education</h1>
-                    <h1>{eduItem.school}</h1>
-                  </div>
-                ))}
-
-                {projects.map((projItem) => (
-                  <div key={projItem.id}>
-                    <h1 className="font-bold text-2xl">Projects</h1>
-                    <h1>{projItem.title}</h1>
-                    <h1>{projItem.subtitle}</h1>
-                  </div>
-                ))}
-
-                {skills.map((item) => (
-                  <div key={item.id}>
-                    <h1 className="font-bold text-2xl">Skills</h1>
-                    <h1>{item.category}</h1>
-                    {item.list.map((skill) => (
-                      <li key={skill.id}>{skill.name}</li>
-                    ))}
+            {hasContent(experience) && (
+              <div className="mt-6">
+                <h1 className="font-bold text-xl">EXPERIENCE</h1>
+                <div className="border-t-2 mb-2"></div>
+                {experience.map((item) => (
+                  <div key={item.id} className="mb-4">
+                    <div className="flex justify-between">
+                      <h2 className="font-semibold">{item.jobTitle}</h2>
+                      <p>
+                        {item.startDate}{" "}
+                        {item.startDate && item.endDate ? "-" : ""}{" "}
+                        {item.endDate}
+                      </p>
+                    </div>
+                    <div className="flex justify-between">
+                      <p className="italic">{item.employer}</p>
+                      <p>{item.location}</p>
+                    </div>
+                    <p className="w-3/4">{item.description}</p>
                   </div>
                 ))}
               </div>

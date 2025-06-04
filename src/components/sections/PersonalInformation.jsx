@@ -81,7 +81,7 @@ export default function PersonalInformation({
                 id="location"
                 name="location"
                 value={personalInfo.location}
-                placeholder="City, Country"
+                placeholder="Enter Location"
                 onChangeField={handlePersonalInfo}
               />
             </motion.div>
