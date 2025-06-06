@@ -14,6 +14,7 @@ import {
   generateSkills,
 } from "../components/data";
 import { v4 as uuid } from "uuid";
+import generatePDF from "../components/sections/PDFGenerator";
 
 export default function ResumeBuilderPage() {
   const [personalInfo, setPersonalInfo] = useState(samplePersonalInfo);
@@ -134,9 +135,18 @@ export default function ResumeBuilderPage() {
                 handleAddCategory={handleAddSection(setSkills, generateSkills)}
               />
             </div>
+            <button
+              onClick={generatePDF}
+              className="px-4 py-2 rounded mt-4 text-white font-bold cursor-pointer bg-indigo-400"
+            >
+              Download PDF
+            </button>
           </div>
         </div>
-        <div className=" max-h-[90vh] overflow-auto scroll-smooth no-scrollbar font-serif">
+        <div
+          id="pdf-content"
+          className=" max-h-[90vh] overflow-auto scroll-smooth no-scrollbar font-serif"
+        >
           <div className="bg-white w-[210mm] h-[297mm] mx-auto p-8 shadow-lg ">
             {personalInfo && (
               <div className="flex flex-col items-center gap-4">
