@@ -5,7 +5,7 @@ import Education from "../components/sections/Education";
 import Projects from "../components/sections/Projects";
 import Skills from "../components/sections/Skills";
 import { Link } from "react-router-dom";
-import { FileText, Mail, Phone, MapPin } from "lucide-react";
+import { FileText, Mail, Phone, MapPin, Download } from "lucide-react";
 import {
   samplePersonalInfo,
   generateExperience,
@@ -137,9 +137,12 @@ export default function ResumeBuilderPage() {
             </div>
             <button
               onClick={generatePDF}
-              className="px-4 py-2 rounded mt-4 text-white font-bold cursor-pointer bg-indigo-400"
+              className="px-4 py-3 rounded mt-4 text-white font-bold cursor-pointer bg-indigo-400 hover:bg-indigo-500 transition-colors duration-150"
             >
-              Download PDF
+              <div className="flex gap-2">
+                <Download />
+                Download as PDF
+              </div>
             </button>
           </div>
         </div>
