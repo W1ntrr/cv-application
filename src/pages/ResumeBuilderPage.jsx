@@ -180,7 +180,7 @@ export default function ResumeBuilderPage() {
             {hasContent(experience) && (
               <div className="mt-6">
                 <h1 className="font-bold text-xl">EXPERIENCE</h1>
-                <div className="border-t-2 mb-3"></div>
+                <div className="border-t-2 mb-3 mt-2"></div>
                 {experience.map((item) => (
                   <div key={item.id} className="mb-4">
                     <div className="flex justify-between">
@@ -204,7 +204,7 @@ export default function ResumeBuilderPage() {
             {hasContent(education) && (
               <div className="mt-6">
                 <h1 className="font-bold text-xl">EDUCATION</h1>
-                <div className="border-t-2 mb-3"></div>
+                <div className="border-t-2 mb-3 mt-2"></div>
                 {education.map((eduItem) => (
                   <div key={eduItem.id} className="mb-4">
                     <div className="flex justify-between">
@@ -228,7 +228,7 @@ export default function ResumeBuilderPage() {
             {hasContent(projects) && (
               <div>
                 <h1 className="font-bold text-xl">PROJECTS</h1>
-                <div className="border-t-2 mb-3"> </div>
+                <div className="border-t-2 mb-3 mt-2"> </div>
                 {projects.map((projItem) => (
                   <div key={projItem.id} className="mb-4">
                     <div>
@@ -244,7 +244,7 @@ export default function ResumeBuilderPage() {
             {hasContent(skills) && (
               <div>
                 <h1 className="font-bold text-xl">SKILLS</h1>
-                <div className="border-t-2 mb-3"></div>
+                <div className="border-t-2 mb-3 mt-2"></div>
                 {skills.map((skill) => (
                   <div key={skill.id}>
                     <div className="flex flex-wrap items-center gap-2">
